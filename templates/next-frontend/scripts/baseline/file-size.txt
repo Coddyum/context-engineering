@@ -1,0 +1,8 @@
+# Files that already exceeded the line limit when this guard was introduced.
+# One path per line, relative to the repo root. Anything not listed fails the guard.
+#
+# This list is the debt, written down and countable. It must only shrink: when a listed file
+# stops violating the rule, the guard reports it as RESOLVED and fails until the line is
+# deleted — which is how the debt becomes visibly smaller instead of quietly permanent.
+#
+# Adding a line to this file is a decision, not a fix. It needs a reason in the commit message.

@@ -1,0 +1,14 @@
+# The exact set of paths src/middleware.ts lets through without an auth cookie.
+#
+# This set IS the authentication boundary of the front end: everything not in it is redirected
+# to the login route. Widening it is a security change, and a security change must never be a
+# side effect of editing a switch statement — so it is pinned here, and moving it shows up on
+# its own line of the diff.
+#
+# Format: "<operator> <literal>", one per line, as check-public-routes.sh normalises them.
+# Fill this in from your own middleware, then run ./scripts/check-public-routes.sh once to
+# confirm it matches. Examples:
+#
+# === "/"
+# .startsWith( "/_next"
+# .startsWith( "/auth"
