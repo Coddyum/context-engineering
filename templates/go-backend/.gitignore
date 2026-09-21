@@ -1,0 +1,16 @@
+# Reports — working artifacts, not tracked source (see .claude/rules/reports.md)
+docs/rapport/
+
+# Go build outputs
+bin/
+*.exe
+
+# Env & secrets
+.env
+.env.*
+!.env.example
+
+# OS / editor / misc
+.DS_Store
+*.log
+coverage/

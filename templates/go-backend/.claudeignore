@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+.next/
+out/
+tmp/
+
+# Go binaries
+bin/
+*.exe
+
+# Locks (rarement utiles pour Claude)
+package-lock.json
+pnpm-lock.yaml
+go.sum
+
+# Misc
+.env*
+*.log
+coverage/
+.DS_Store

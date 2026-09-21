@@ -1,0 +1,17 @@
+# Repo-local Codex configuration. Loaded only when the project is marked trusted.
+# Deliberately sets neither model nor personality: user preferences stay in charge.
+
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+project_doc_max_bytes = 65536
+# Codex reads AGENTS.md natively as the project doc; fall back to CLAUDE.md if needed.
+project_doc_fallback_filenames = ["CLAUDE.md"]
+
+[sandbox_workspace_write]
+writable_roots = []
+# Agents are autonomous here (run migrations, sqlc, go tooling, reach the local DB), so network is on.
+# Tighten to false if this project does not need outbound/localhost network from Codex.
+network_access = true
+
+[features]
+hooks = true

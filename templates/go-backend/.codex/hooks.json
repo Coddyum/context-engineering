@@ -1,0 +1,31 @@
+{
+  "description": "Repo Codex guardrails: block prod/irreversible commands, validate edited Go files.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|shell|local_shell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$(git rev-parse --show-toplevel)/scripts/block-prod.sh\"",
+            "timeout": 5,
+            "statusMessage": "Repo policy check"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "apply_patch|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$(git rev-parse --show-toplevel)/.codex/hooks/verify-go-build.sh\"",
+            "timeout": 60,
+            "statusMessage": "Validating edited Go code"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+# Production and irreversible commands are human-only. Dev autonomy is UNAFFECTED
+# (up-dev, sqlc generate, tests all pass). The PreToolUse block-prod hook covers the rest
+# (main pushes, prod DB URL). Human authorization = run with ALLOW_PROD=1.
+
+prefix_rule(
+    pattern = ["make", "up-prod"],
+    decision = "forbidden",
+    justification = "Production migrations are human-only. If authorized, the human runs it (ALLOW_PROD=1).",
+    match = ["make up-prod"],
+)
+
+prefix_rule(
+    pattern = ["git", "push", ["--force", "-f"]],
+    decision = "forbidden",
+    justification = "Force push is destructive and human-only.",
+    match = ["git push --force", "git push -f origin main"],
+)
+
+prefix_rule(
+    pattern = ["git", "reset", "--hard"],
+    decision = "forbidden",
+    justification = "git reset --hard can destroy the user's uncommitted changes.",
+    match = ["git reset --hard", "git reset --hard HEAD~1"],
+)
+
+prefix_rule(
+    pattern = ["git", "clean"],
+    decision = "forbidden",
+    justification = "git clean can permanently delete untracked files.",
+    match = ["git clean -fd", "git clean -xdf"],
+)
