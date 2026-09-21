@@ -1,0 +1,5 @@
+.DS_Store
+*.log
+
+# This repository ships templates. Their .gitignore files are part of the template
+# and stay tracked; nothing here is built, so there is nothing else to ignore.
