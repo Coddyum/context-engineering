@@ -1,0 +1,15 @@
+# ~/Library/Preferences/pnpm/config.yaml  (macOS)
+# ~/.config/pnpm/rc                        (Linux, as rc syntax)
+#
+# Machine-wide pnpm policy. These two lines do most of the supply-chain work; the
+# block-fresh-packages.mjs hook is the backstop that catches what walks around them.
+
+# 20160 minutes = 14 days. pnpm refuses to resolve a version published more recently,
+# and picks the most recent one that IS old enough instead. Nothing to remember, nothing
+# to type: the safe choice becomes the default choice.
+minimumReleaseAge: 20160
+
+# Every install writes an exact version, never a ^range. A range is a standing instruction
+# to auto-upgrade on the next lockfile refresh — which is the one thing the quarantine exists
+# to prevent.
+saveExact: true

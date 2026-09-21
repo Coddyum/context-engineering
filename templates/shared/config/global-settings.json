@@ -1,0 +1,18 @@
+{
+  "//": "~/.claude/settings.json — user-level, applies to every repository on the machine.",
+  "//hooks": "The package guard is user-level on purpose: a per-repo hook protects the repos you remembered to configure, which is not the set that matters.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/block-fresh-packages.mjs\"",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}
